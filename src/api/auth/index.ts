@@ -10,7 +10,7 @@ export const login = (params: ILoginRequest):AxiosPromise<ILoginResponse> => {
 }
 
 export const logout = () => {
-    return axiosInstance.get(endpoints.AUTH.LOGOUT)
+    return axiosInstance.get('https://doctasks-back.onrender.com/logout')
 }
 
 export const saveDocumentation = (params: IDocumentationRequest):AxiosPromise<ILoginResponse> => {
