@@ -6,7 +6,7 @@ import endpoints from "../endpoints";
 import {IDocumentationRequest} from "../../store/projects/actionCreators";
 
 export const login = (params: ILoginRequest):AxiosPromise<ILoginResponse> => {
-    return axiosInstance.post(`${Endpoints.BASEURL}/login`, params)
+    return axiosInstance.post(`https://doctasks-back.onrender.com/login`, params)
 }
 
 export const logout = () => {
@@ -14,8 +14,8 @@ export const logout = () => {
 }
 
 export const saveDocumentation = (params: IDocumentationRequest):AxiosPromise<ILoginResponse> => {
-    return axiosInstance.post(`${Endpoints.BASEURL}/updateDocumentation`, params)
+    return axiosInstance.post(`https://doctasks-back.onrender.com/updateDocumentation`, params)
 }
 
-export const refreshToken = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`${Endpoints.BASEURL}/refresh`)
-export const getProfile = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`${Endpoints.BASEURL}/profile}`);
+export const refreshToken = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`https://doctasks-back.onrender.com/refresh`)
+export const getProfile = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`https://doctasks-back.onrender.com/profile}`);

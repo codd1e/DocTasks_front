@@ -8,19 +8,6 @@ import {
 } from "./projectsReducer";
 import axios from "axios";
 import api from "../../api";
-import Endpoints from "../../api/endpoints";
-export interface IProject {
-    _id: string;
-    id: number;
-    title: string;
-    sub: string;
-}
-
-export interface IDocumentation {
-    _id: string | null;
-    projectId: number;
-    text: string;
-}
 
 export interface  IDocumentationRequest {
     id: number,
@@ -31,7 +18,7 @@ export const setProjects = () => {
     return async (dispatch: Dispatch<any>) => {
         try {
             dispatch(loadProjects())
-            const response = await axios.get(`${Endpoints.BASEURL}/projects`)
+            const response = await axios.get(`https://doctasks-back.onrender.com/projects`)
             dispatch(loadProjectsSuccess(response.data))
         } catch (err: any) {
             dispatch(loadProjectsFailed(err.message))
@@ -43,7 +30,7 @@ export const setDocumentation = () => {
     return async (dispatch: Dispatch<any>) => {
         try {
             dispatch(loadDocumentation())
-            const response = await axios.get(`${Endpoints.BASEURL}/documentation`)
+            const response = await axios.get(`https://doctasks-back.onrender.com/documentation`)
             dispatch(loadDocumentationSuccess(response.data))
         } catch (err: any) {
             dispatch(loadDocumentationFailed(err.message))
