@@ -36,7 +36,7 @@ const Login: FC = () => {
                     label="Пароль"
                     className="auth__form__input"
                 />
-                <button className="auth__form__btn">Вход</button>
+                <button className="auth__form__btn" onClick={handleSubmit}>Вход</button>
             </form>
         </>
     );

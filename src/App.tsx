@@ -13,10 +13,10 @@ const App: FC = () => {
         dispatch(getAccessToken())
     }, [])
     return (
-        <Router>
+        <>
             <Header/>
             <AppRouter/>
-        </Router>
+        </>
     );
 };
 
