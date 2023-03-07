@@ -6,7 +6,7 @@ import endpoints from "../endpoints";
 import {IDocumentationRequest} from "../../store/projects/actionCreators";
 
 export const login = (params: ILoginRequest):AxiosPromise<ILoginResponse> => {
-    return axiosInstance.post(`${Endpoints.BASEURL}${Endpoints.AUTH.LOGIN}`, params)
+    return axiosInstance.post(`${Endpoints.BASEURL}/login`, params)
 }
 
 export const logout = () => {
@@ -17,5 +17,5 @@ export const saveDocumentation = (params: IDocumentationRequest):AxiosPromise<IL
     return axiosInstance.post(`${Endpoints.BASEURL}/updateDocumentation`, params)
 }
 
-export const refreshToken = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`${Endpoints.BASEURL}${Endpoints.AUTH.REFRESH}`)
-export const getProfile = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`${Endpoints.BASEURL}${Endpoints.AUTH.PROFILE}`);
+export const refreshToken = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`${Endpoints.BASEURL}/refresh`)
+export const getProfile = (): AxiosPromise<ILoginResponse> => axiosInstance.get(`${Endpoints.BASEURL}/profile}`);
