@@ -6,6 +6,7 @@ import {loadProfileStart, loginFailed, loginStart, loginSuccess, logoutProfile, 
 import {store} from "../index";
 import {AxiosPromise} from "axios";
 import {isTokenExpired} from "../../utils/jwt";
+import {destroyCookie, setCookie} from "nookies";
 
 export const loginUser = (data: ILoginRequest) => {
     return async (dispatch: Dispatch<any>):Promise<void> => {
@@ -14,7 +15,9 @@ export const loginUser = (data: ILoginRequest) => {
             const res = await api.auth.login(data)
             dispatch(loginSuccess(res.data.accessToken))
             dispatch(getProfile())
-
+            if(res) {
+                setCookie(null, 'refreshToken', res.data.accessToken)
+            }
         } catch (err: any) {
             dispatch(loginFailed(err.message))
         }
@@ -25,6 +28,7 @@ export const logoutUser = () => {
         try {
             await  api.auth.logout()
             dispatch(logoutProfile())
+            destroyCookie(null, 'refreshToken')
         } catch (error) {
             console.log(error)
         }
