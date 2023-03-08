@@ -79,9 +79,9 @@ body {
   }
   .error_alert {
     position: absolute;
-    max-width: 240px;
+    max-width: 360px;
     bottom: 0;
-    left: 5%;
+    right: 0;
   }
   .projects {
     margin: 0 auto;
@@ -145,11 +145,7 @@ body {
       right: 0;
       bottom: 0;
       &__btn {
-        border: 1px solid teal;
-        background: 0;
         font-size: 18px;
-        border-radius: 16px;
-        padding: 8px 12px;
       }
     }
   }

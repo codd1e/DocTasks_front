@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppSelector} from "../store";
 import Documentation from "../components/Documentation";
+import Button from "@mui/material/Button";
 
 const ProjectPage: FC = () => {
     const params = useParams();
@@ -25,7 +26,7 @@ const ProjectPage: FC = () => {
                     </>
             }
             <div className="project__back">
-                <button onClick={() => navigate(-1)} className="project__back__btn">Back</button>
+                <Button variant="contained" size="medium" color="error" onClick={() => navigate(-1)} className="project__back__btn">Back</Button>
             </div>
         </div>
 

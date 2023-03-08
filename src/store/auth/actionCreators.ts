@@ -18,7 +18,6 @@ export const loginUser = (data: ILoginRequest) => {
             if(res) {
                 setCookie(null, 'refreshToken', res.data.refreshToken, {
                     maxAge: 24 * 60 * 60,
-                    secure: true
                 })
             }
         } catch (err: any) {

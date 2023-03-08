@@ -8,6 +8,7 @@ import {selectLoggedInError} from "../selectors/isLogged";
 import {Alert} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
+import {clearErrorAuth} from "../store/auth/authReducer";
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
@@ -18,6 +19,10 @@ const Login: FC = () => {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         dispatch(loginUser({login, password}));
+        if(isError) {
+            dispatch(clearErrorAuth())
+            setOpen(true);
+        }
     }
     return (
         <>
@@ -45,7 +50,7 @@ const Login: FC = () => {
                 />
                 <button className="auth__form__btn" onClick={handleSubmit}>Вход</button>
             </form>
-            {isError ? <Alert variant="filled" severity="error" className="error_alert" action={
+            {isError ? open ? <Alert variant="filled" severity="error" className="error_alert" action={
                 <IconButton
                     aria-label="close"
                     color="inherit"
@@ -57,8 +62,8 @@ const Login: FC = () => {
                     <CloseIcon fontSize="inherit" />
                 </IconButton>
             }>
-                Что-то пошло не так! Попробуйте снова
-            </Alert> : null}
+                Не удалось авторизироваться, попробуйте снова!
+            </Alert>: 0 : null}
         </>
     );
 };

@@ -65,6 +65,15 @@ const authReducer = createSlice({
                 }
             }
         },
+        clearErrorAuth: (state) => {
+            return {
+                ...state,
+                authData: {
+                    ...state.authData,
+                    error: null,
+                }
+            }
+        },
         loadProfileStart: (state): AuthState => {
             return {
                 ...state,
@@ -115,5 +124,5 @@ const authReducer = createSlice({
     }
 })
 
-export const {loginStart, loginSuccess, loginFailed, loadProfileStart, loadProfileSuccess, loadProfileFailed, logoutProfile} = authReducer.actions
+export const {loginStart, loginSuccess, loginFailed, clearErrorAuth, loadProfileStart, loadProfileSuccess, loadProfileFailed, logoutProfile} = authReducer.actions
 export default authReducer.reducer;

@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import {useParams} from "react-router-dom";
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import SaveIcon from '@mui/icons-material/Save';
 
 import {useAppDispatch, useAppSelector} from "../store";
 import {saveDoc} from "../store/projects/actionCreators";
@@ -47,7 +47,7 @@ const Documentation: FC = () => {
                         role === 'user' ? null
                             : (!isEdition
                                 ? <Button variant="contained" className="documentation__edit__btn" onClick={handleEdit}>Редакировать</Button>
-                                : <Button variant="contained" color="success" className="documentation__edit__btn" onClick={handleSave}>Сохранить</Button>)
+                                : <Button variant="contained" color="success" className="documentation__edit__btn" onClick={handleSave}><SaveIcon/> Сохранить</Button>)
                     }
                 </>
                 : <div>Документация не найдена</div>}
