@@ -1,5 +1,4 @@
 import React, {FC, useEffect} from 'react';
-import {HashRouter as Router} from "react-router-dom";
 
 import Header from "./components/Header";
 import AppRouter from "./components/AppRouter";

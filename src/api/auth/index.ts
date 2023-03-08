@@ -1,21 +1,20 @@
 import {axiosInstance} from "../instance";
-import Endpoints from "../endpoints";
 import {ILoginRequest, ILoginResponse} from "./types";
-import axios, {AxiosPromise} from "axios";
-import endpoints from "../endpoints";
+import {AxiosPromise} from "axios";
 import {IDocumentationRequest} from "../../store/projects/actionCreators";
+import Endpoints from "../endpoints";
 
 export const login = (params: ILoginRequest):AxiosPromise<ILoginResponse> => {
-    return axios.post(`https://doctasks-back.onrender.com/login`, params)
+    return axiosInstance.post(Endpoints.AUTH.LOGIN, params)
 }
 
 export const logout = () => {
-    return axios.get('https://doctasks-back.onrender.com/logout')
+    return axiosInstance.get(Endpoints.AUTH.LOGOUT)
 }
 
 export const saveDocumentation = (params: IDocumentationRequest):AxiosPromise<ILoginResponse> => {
-    return axios.post(`https://doctasks-back.onrender.com/updateDocumentation`, params)
+    return axiosInstance.post(`/updateDocumentation`, params)
 }
 
-export const refreshToken = (): AxiosPromise<ILoginResponse> => axios.get(`https://doctasks-back.onrender.com/refresh`)
-export const getProfile = (): AxiosPromise<ILoginResponse> => axios.get(`https://doctasks-back.onrender.com/profile}`);
+export const refreshToken = (): AxiosPromise<ILoginResponse> => axiosInstance.get(Endpoints.AUTH.REFRESH)
+export const getProfile = (): AxiosPromise<ILoginResponse> => axiosInstance.get(Endpoints.AUTH.PROFILE);
