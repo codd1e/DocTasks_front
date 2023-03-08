@@ -4,9 +4,7 @@ import { getAccessToken, logoutUser } from '../store/auth/actionCreators'
 
 import Endpoints from './endpoints'
 
-export const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
+export const axiosInstance = axios.create({})
 
 const urlsSkipAuth = [Endpoints.AUTH.LOGIN, Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
 
