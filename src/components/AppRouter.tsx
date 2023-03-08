@@ -16,6 +16,7 @@ const AppRouter: FC = () => {
                 <Route path = '/' element={<Main/>} />
                 <Route path='/sign' element={isLoggedIn ? <Navigate to="/" /> : <Login/>}/>
                 <Route path = '/projects/:id'  element={<ProjectPage/>}/>
+                <Route path = '/account' element={isLoggedIn ?<Navigate to="/" /> : <Login/>}/>
                 <Route path = '*' element={<NotFound/>} />
             </Routes>
         </>

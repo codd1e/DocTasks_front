@@ -5,10 +5,7 @@ import {setDocumentation, setProjects} from "../../store/projects/actionCreators
 import ProjectItem from "./ProjectItem";
 import {Backdrop, CircularProgress} from "@mui/material";
 
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 
 const ProjectsList: FC = () => {
     const dispatch = useAppDispatch();

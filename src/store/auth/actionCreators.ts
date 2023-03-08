@@ -16,10 +16,9 @@ export const loginUser = (data: ILoginRequest) => {
             dispatch(loginSuccess(res.data.accessToken))
             dispatch(getProfile())
             if(res) {
-                setCookie(null, 'refreshToken', JSON.stringify(res.data.refreshToken), {
-                    httpOnly: true,
-                    maxAge: 60*60,
-                    path: '/'
+                setCookie(null, 'refreshToken', res.data.refreshToken, {
+                    maxAge: 24 * 60 * 60,
+                    secure: true
                 })
             }
         } catch (err: any) {
