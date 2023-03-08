@@ -6,7 +6,5 @@ export interface ILoginRequest {
 export interface ILoginResponse {
     accessToken: string;
 
-    login: string;
-
-    role: 'user' | 'staff' | 'admin';
+    refreshToken: string;
 }
