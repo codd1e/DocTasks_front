@@ -15,13 +15,6 @@ export const loginUser = (data: ILoginRequest) => {
             const res = await api.auth.login(data)
             dispatch(loginSuccess(res.data.accessToken))
             dispatch(getProfile())
-            if(res) {
-                setCookie(null, 'refreshToken', res.data.refreshToken, {
-                    maxAge: 24 * 60 * 60,
-                    secure: true,
-                    sameSite: 'none'
-                })
-            }
         } catch (err: any) {
             dispatch(loginFailed(err.message))
         }
@@ -32,7 +25,6 @@ export const logoutUser = () => {
         try {
             await  api.auth.logout()
             dispatch(logoutProfile())
-            destroyCookie(null, 'refreshToken')
         } catch (error) {
             console.log(error)
         }

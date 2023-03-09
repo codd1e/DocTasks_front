@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, useEffect, useState} from 'react';
+import React, {FC, FormEvent, useState} from 'react';
 
 import {loginUser} from "../store/auth/actionCreators";
 import {useAppDispatch} from "../store";
