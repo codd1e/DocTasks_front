@@ -7,7 +7,7 @@ import Endpoints from './endpoints'
 export const axiosInstance = axios.create({
     withCredentials: true,
     baseURL: "https://doctasks-back.onrender.com",
-    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', "credentials": 'include'},
 })
 
 const urlsSkipAuth = [Endpoints.AUTH.LOGIN, Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
