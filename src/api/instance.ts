@@ -7,6 +7,7 @@ import Endpoints from './endpoints'
 export const axiosInstance = axios.create({
     baseURL: "https://doctasks-back.onrender.com",
     withCredentials: true,
+    headers: {"Access-Control-Allow-Origin": "https://doc-tasks-front.vercel.app/"}
 })
 
 const urlsSkipAuth = [Endpoints.AUTH.LOGIN, Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
