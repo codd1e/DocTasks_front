@@ -196,26 +196,28 @@ const Header:FC = () => {
                         </Link>
                         :
                         <>
-                            <ListItem key={"Profile"} disablePadding sx={{ display: "block" }}>
-                                <ListItemButton
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open ? "initial" : "center",
-                                        px: 2.5
-                                    }}
-                                >
-                                    <ListItemIcon
+                            <Link to='/account' className='header__link'>
+                                <ListItem key={"Profile"} disablePadding sx={{ display: "block" }}>
+                                    <ListItemButton
                                         sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : "auto",
-                                            justifyContent: "center"
+                                            minHeight: 48,
+                                            justifyContent: open ? "initial" : "center",
+                                            px: 2.5
                                         }}
                                     >
-                                        <AccountCircleIcon/>
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Profile"} sx={{ opacity: open ? 1 : 0 }} />
-                                </ListItemButton>
-                            </ListItem>
+                                        <ListItemIcon
+                                            sx={{
+                                                minWidth: 0,
+                                                mr: open ? 3 : "auto",
+                                                justifyContent: "center"
+                                            }}
+                                        >
+                                            <AccountCircleIcon/>
+                                        </ListItemIcon>
+                                        <ListItemText primary={"Profile"} sx={{ opacity: open ? 1 : 0 }} />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
                             <ListItem key={"Logout"} disablePadding sx={{ display: "block" }}>
                                 <ListItemButton
                                     sx={{
