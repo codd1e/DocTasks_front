@@ -6,6 +6,7 @@ import Endpoints from './endpoints'
 
 export const axiosInstance = axios.create({
     baseURL: "https://doctasks-back.onrender.com",
+    withCredentials: true
 })
 
 const urlsSkipAuth = [Endpoints.AUTH.LOGIN, Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]

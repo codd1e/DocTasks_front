@@ -130,7 +130,7 @@ const Header:FC = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        CRM - система
+                        DocTask - system for monitoring tasks and documentation
                     </Typography>
                 </Toolbar>
             </AppBar>
