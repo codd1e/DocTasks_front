@@ -9,6 +9,9 @@ export interface AuthState {
         profile: {
             login: string | null,
             role: 'user' | 'staff' | 'admin',
+            post: string | null,
+            team: 'Front-end Team' | 'Back-end Team' | 'DreamTeam' | null
+            avatar: string | null
         },
         isLoading: boolean,
         error: string | null
@@ -25,6 +28,9 @@ export const initialState:AuthState = {
         profile: {
             login: null,
             role: 'user',
+            post: null,
+            team: null,
+            avatar: null
         },
         isLoading: false,
         error: null,
@@ -114,7 +120,10 @@ const authReducer = createSlice({
                 profileData: {
                     profile: {
                         login: null,
-                        role: "user"
+                        role: "user",
+                        post: null,
+                        team: null,
+                        avatar: null
                     },
                     isLoading: false,
                     error: null
