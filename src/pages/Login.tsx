@@ -27,7 +27,7 @@ const Login: FC = () => {
     return (
         <>
             <form onSubmit={handleSubmit} className="auth__form">
-                <h1>Вход в систему</h1>
+                <h1 className="auth__form__title">Вход в систему</h1>
                 <TextField
                     fullWidth
                     type="text"

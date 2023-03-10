@@ -4,7 +4,7 @@ import {Container} from "@mui/material";
 
 const Main: FC = () => {
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" className="main">
             <ProjectsList/>
         </Container>
     );
