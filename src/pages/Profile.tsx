@@ -7,7 +7,7 @@ const Profile:FC = () => {
     return (
         <Container maxWidth="lg" className="main">
             <div>
-                {profile.avatar}
+                <img src={profile.avatar!} alt=""/>
             </div>
             <div>
                 {profile.login}
