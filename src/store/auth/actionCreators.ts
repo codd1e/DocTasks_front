@@ -6,7 +6,6 @@ import {loadProfileStart, loginFailed, loginStart, loginSuccess, logoutProfile, 
 import {store} from "../index";
 import {AxiosPromise} from "axios";
 import {isTokenExpired} from "../../utils/jwt";
-import {destroyCookie, setCookie} from "nookies";
 
 export const loginUser = (data: ILoginRequest) => {
     return async (dispatch: Dispatch<any>):Promise<void> => {
