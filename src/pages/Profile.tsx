@@ -28,20 +28,16 @@ const Profile:FC = () => {
             <List className="profile__info">
                 <Typography variant="h2">Информация</Typography>
                 <ListItem disablePadding className="profile__info__point">
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <GroupIcon />
-                        </ListItemIcon>
-                        <Typography variant="h5">{profile.team}</Typography>
-                    </ListItemButton>
+                    <ListItemIcon>
+                        <GroupIcon />
+                    </ListItemIcon>
+                    <Typography variant="h5">{profile.team}</Typography>
                 </ListItem>
                 <ListItem disablePadding className="profile__info__point">
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        <Typography variant="h5">{profile.post}</Typography>
-                    </ListItemButton>
+                    <ListItemIcon>
+                        <PersonIcon />
+                    </ListItemIcon>
+                    <Typography variant="h5">{profile.post}</Typography>
                 </ListItem>
             </List>
         </Container>
