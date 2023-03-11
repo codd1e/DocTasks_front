@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -101,6 +101,7 @@ const Drawer = styled(MuiDrawer, {
 const Header:FC = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn)
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -227,7 +228,8 @@ const Header:FC = () => {
                                     }}
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        dispatch(logoutUser())
+                                        dispatch(logoutUser());
+                                        navigate('/');
                                     }}
                                 >
                                     <ListItemIcon
@@ -248,12 +250,6 @@ const Header:FC = () => {
             </Drawer>
         </Box>
     );
-    // return (
-    //     <div className="header">
-    //         <Link to='/' className="header__link">Main</Link>
-    //
-    //     </div>
-    // );
 };
 
 export default Header;

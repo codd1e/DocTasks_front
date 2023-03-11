@@ -9,7 +9,7 @@ export const axiosInstance = axios.create({
     withCredentials: true,
 })
 
-const urlsSkipAuth = [Endpoints.AUTH.LOGIN, Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
+const urlsSkipAuth = [Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
 
 axiosInstance.interceptors.request.use(async (config) => {
     if (config.url && urlsSkipAuth.includes(config.url)) {

@@ -2,7 +2,16 @@ import {Dispatch} from "react";
 
 import {ILoginRequest, ILoginResponse} from "../../api/auth/types";
 import api from '../../api'
-import {loadProfileStart, loginFailed, loginStart, loginSuccess, logoutProfile, loadProfileFailed, loadProfileSuccess} from "./authReducer";
+import {
+    loadProfileStart,
+    loginFailed,
+    loginStart,
+    loginSuccess,
+    logoutProfile,
+    loadProfileFailed,
+    loadProfileSuccess,
+    logoutSuccess
+} from "./authReducer";
 import {store} from "../index";
 import {AxiosPromise} from "axios";
 import {isTokenExpired} from "../../utils/jwt";
@@ -23,8 +32,7 @@ export const logoutUser = () => {
     return async (dispatch: Dispatch<any>): Promise<void> => {
         try {
             await  api.auth.logout()
-            dispatch(logoutProfile())
-
+            dispatch(logoutSuccess())
         } catch (error) {
             console.log(error)
         }
