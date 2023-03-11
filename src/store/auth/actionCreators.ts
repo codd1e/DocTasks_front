@@ -24,6 +24,7 @@ export const logoutUser = () => {
         try {
             await  api.auth.logout()
             dispatch(logoutProfile())
+
         } catch (error) {
             console.log(error)
         }
@@ -61,7 +62,6 @@ export const getAccessToken =
                     refreshTokenRequest = null
 
                     dispatch(loginSuccess(res.data.accessToken))
-                    dispatch(getProfile())
 
                     return res.data.accessToken
                 }

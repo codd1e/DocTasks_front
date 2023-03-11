@@ -20,11 +20,11 @@ axiosInstance.interceptors.request.use(async (config) => {
 
     if (accessToken) {
         const autharization = `Bearer ${accessToken}`
-
         config.headers = {
             ...config.headers,
             authorization: autharization
         }
+        console.log(config.headers)
     }
 
     return config
