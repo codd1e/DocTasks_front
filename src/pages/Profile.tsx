@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useAppSelector} from "../store";
-import {Container} from "@mui/material";
+import {Container, Tooltip} from "@mui/material";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -27,18 +27,22 @@ const Profile:FC = () => {
             {/*</div>*/}
             <List className="profile__info">
                 <Typography variant="h2">Информация</Typography>
-                <ListItem disablePadding className="profile__info__point">
-                    <ListItemIcon>
-                        <GroupIcon />
-                    </ListItemIcon>
-                    <Typography variant="h5">{profile.team}</Typography>
-                </ListItem>
-                <ListItem disablePadding className="profile__info__point">
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <Typography variant="h5">{profile.post}</Typography>
-                </ListItem>
+                <Tooltip title="Команда" placement="left">
+                    <ListItem disablePadding className="profile__info__point">
+                        <ListItemIcon>
+                            <GroupIcon />
+                        </ListItemIcon>
+                        <Typography variant="h5">{profile.team}</Typography>
+                    </ListItem>
+                </Tooltip>
+                <Tooltip title="Должность" placement="left">
+                    <ListItem disablePadding className="profile__info__point">
+                        <ListItemIcon>
+                            <PersonIcon />
+                        </ListItemIcon>
+                        <Typography variant="h5">{profile.post}</Typography>
+                    </ListItem>
+                </Tooltip>
             </List>
         </Container>
     );
