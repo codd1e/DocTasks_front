@@ -231,6 +231,23 @@ body {
       }
     }
   }
+  .profile {
+    margin: 52px 240px 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__avatar {
+      width: 220px;
+      padding: 20px;
+    }
+    &__info {
+      margin-right: 160px;
+      &__point {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+    }
+  }
 }
 
 

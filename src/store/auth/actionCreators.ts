@@ -22,7 +22,7 @@ export const loginUser = (data: ILoginRequest) => {
             dispatch(loginStart())
             const res = await api.auth.login(data)
             dispatch(loginSuccess(res.data.accessToken))
-            dispatch(getProfile())
+            dispatch(getProfile());
         } catch (err: any) {
             dispatch(loginFailed(err.message))
         }
@@ -70,7 +70,7 @@ export const getAccessToken =
                     refreshTokenRequest = null
 
                     dispatch(loginSuccess(res.data.accessToken))
-
+                    dispatch(getProfile())
                     return res.data.accessToken
                 }
 
