@@ -7,10 +7,9 @@ import Endpoints from './endpoints'
 export const axiosInstance = axios.create({
     baseURL: "https://doctasks-back.onrender.com",
     withCredentials: true,
-    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
 })
 
-const urlsSkipAuth = [Endpoints.AUTH.LOGIN, Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
+const urlsSkipAuth = [Endpoints.AUTH.REFRESH, Endpoints.AUTH.LOGOUT]
 
 axiosInstance.interceptors.request.use(async (config) => {
     if (config.url && urlsSkipAuth.includes(config.url)) {
@@ -21,11 +20,11 @@ axiosInstance.interceptors.request.use(async (config) => {
 
     if (accessToken) {
         const autharization = `Bearer ${accessToken}`
-
         config.headers = {
             ...config.headers,
             authorization: autharization
         }
+        console.log(config.headers)
     }
 
     return config
