@@ -24,7 +24,6 @@ axiosInstance.interceptors.request.use(async (config) => {
             ...config.headers,
             authorization: autharization
         }
-        console.log(config.headers)
     }
 
     return config

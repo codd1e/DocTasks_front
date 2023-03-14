@@ -132,7 +132,7 @@ const Header:FC = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        DocTask - system for monitoring tasks and documentation
+                        DocTask - система для мониторинга задач и документации
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -166,7 +166,7 @@ const Header:FC = () => {
                                 >
                                     {<HomeIcon/>}
                                 </ListItemIcon>
-                                <ListItemText primary={"Documentation"} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary={"Документация"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
                     </Link>
@@ -188,7 +188,7 @@ const Header:FC = () => {
                                 >
                                     {<TaskAltIcon/>}
                                 </ListItemIcon>
-                                <ListItemText primary={"Tasks"} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary={"Задачи"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
                     </Link>
@@ -214,7 +214,7 @@ const Header:FC = () => {
                                     >
                                         <LoginIcon/>
                                     </ListItemIcon>
-                                    <ListItemText primary={"Login"} sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary={"Вход"} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
                             </ListItem>
                         </Link>
@@ -238,7 +238,7 @@ const Header:FC = () => {
                                         >
                                             <AccountCircleIcon/>
                                         </ListItemIcon>
-                                        <ListItemText primary={"Profile"} sx={{ opacity: open ? 1 : 0 }} />
+                                        <ListItemText primary={"Профиль"} sx={{ opacity: open ? 1 : 0 }} />
                                     </ListItemButton>
                                 </ListItem>
                             </Link>
@@ -264,7 +264,7 @@ const Header:FC = () => {
                                     >
                                         <LogoutIcon/>
                                     </ListItemIcon>
-                                    <ListItemText primary={"Logout"} sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary={"Выход"} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
                             </ListItem>
                         </>

@@ -133,10 +133,10 @@ const TasksPage:FC = () => {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow>
-                            <TableCell>Задача</TableCell>
-                            <TableCell align="right">Статус</TableCell>
-                            <TableCell align="right">Описание</TableCell>
+                        <TableRow style={{backgroundColor: "#1976D2"}}>
+                            <TableCell style={{color: 'white'}}>Задача</TableCell>
+                            <TableCell align="right" style={{color: 'white'}}>Статус</TableCell>
+                            <TableCell align="right" style={{color: 'white'}}>Описание</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
