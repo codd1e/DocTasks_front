@@ -8,6 +8,7 @@ import {selectIsLoggedIn} from "../selectors/isLogged";
 import NotFound from "../pages/NotFound";
 import ProjectPage from "../pages/ProjectPage";
 import Profile from "../pages/Profile";
+import TasksPage from "../pages/TasksPage";
 
 const AppRouter: FC = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -18,6 +19,7 @@ const AppRouter: FC = () => {
                 <Route path='/sign' element={isLoggedIn ? <Navigate to="/" /> : <Login/>}/>
                 <Route path = '/projects/:id'  element={<ProjectPage/>}/>
                 <Route path = '/account' element={isLoggedIn ? <Profile/> : <Navigate to="/" />}/>
+                <Route path = '/tasks' element={<TasksPage/>}/>
                 <Route path = '*' element={<NotFound/>} />
             </Routes>
         </>
