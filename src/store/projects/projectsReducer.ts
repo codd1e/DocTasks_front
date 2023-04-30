@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export interface ProjectsState {
     projectsData: {
-        projects: [{_id: string; id: number, title: string, sub: string}];
+        projects: {_id: string; id: number, title: string, sub: string}[];
         loading: boolean;
         error: null | string;
     },
     documentationData: {
-        documents: [{projectId: number, text: string}];
+        documents: {projectId: number, text: string}[];
         loading: boolean;
         error: null | string;
     }

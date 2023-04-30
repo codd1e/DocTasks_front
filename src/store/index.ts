@@ -3,11 +3,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {logger} from 'redux-logger'
 import authReducer from "./auth/authReducer";
 import projectsReducer from "./projects/projectsReducer";
+import tasksReducer from "./tasks/tasksReducer";
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
-        projects: projectsReducer
+        projects: projectsReducer,
+        tasks: tasksReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(...(process.env.NODE_ENV !== 'production' ? [logger] : []))
 });

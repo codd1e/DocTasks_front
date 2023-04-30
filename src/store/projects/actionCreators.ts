@@ -10,7 +10,7 @@ import axios from "axios";
 import api from "../../api";
 import {axiosInstance} from "../../api/instance";
 
-export interface  IDocumentationRequest {
+export interface IDocumentationRequest {
     id: number,
     text: string
 }

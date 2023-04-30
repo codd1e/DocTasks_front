@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {Container, TableHead} from "@mui/material";
+import React, {FC, useEffect, useState} from 'react';
+import {Button, Container, TableHead, Tooltip} from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -17,6 +17,14 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import CommentIcon from '@mui/icons-material/Comment';
 import Typography from "@mui/material/Typography";
+import {useAppDispatch, useAppSelector} from "../store";
+import {getTaskDetails, setTasks} from "../store/tasks/actionCreators";
+import {selectCurrentRole} from "../selectors/isLogged";
+import {useSelector} from "react-redux";
+import TaskAddForm from "../components/Tasks/TaskAddForm";
+import DoneIcon from '@mui/icons-material/Done';
+import PendingIcon from '@mui/icons-material/Pending';
+import TaskDetailsInfo from "../components/Tasks/TaskDetailsInfo";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -84,34 +92,20 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     );
 }
 
-
-function createData(name: string, status: string) {
-    return { name, status};
-}
-
-const rows = [
-    createData('Cupcake', 'Активна'),
-    createData('Donut', 'Активна'),
-    createData('Eclair', 'Выполнена'),
-    createData('Frozen yoghurt', 'Активна'),
-    createData('Gingerbread', 'Выполнена'),
-    createData('Honeycomb', 'Выполнена'),
-    createData('Ice cream sandwich', 'Выполнена'),
-    createData('Jelly Bean', 'Выполнена'),
-    createData('KitKat', 'Активна'),
-    createData('Lollipop', 'Выполнена'),
-    createData('Marshmallow', 'Активна'),
-    createData('Nougat', 'Активна'),
-    createData('Oreo', 'Активна'),
-];
-
 const TasksPage:FC = () => {
-    const [page, setPage] = React.useState(0);
+    const [page, setPage] = useState(0);
+    const [addTaskForm, setAddTask] = useState(false);
+    const [taskDetails, setTaskDetails] = useState(false);
+    const tasks = useAppSelector((state) => state.tasks.tasksListData.tasksList);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const role = useSelector(selectCurrentRole);
+
+    const dispatch = useAppDispatch();
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (tasks ? tasks.length : 0)) : 0;
 
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -120,12 +114,25 @@ const TasksPage:FC = () => {
         setPage(newPage);
     };
 
+    const handleTranslateStatus = (status: 'completed' | 'inProgress') => {
+        return status === 'completed' ? 'Выполнена' : 'В процессе'
+    }
+
     const handleChangeRowsPerPage = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    useEffect(() => {
+        dispatch(setTasks())
+    }, [])
+
+    const openTaskDetail = (previewName: string) => {
+        dispatch(getTaskDetails(previewName))
+        setTaskDetails(true);
+    }
 
     return (
         <Container maxWidth="lg" className="main">
@@ -141,18 +148,20 @@ const TasksPage:FC = () => {
                     </TableHead>
                     <TableBody>
                         {(rowsPerPage > 0
-                                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : rows
+                                ? tasks ? tasks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : []
+                                : tasks ? tasks : []
                         ).map((row) => (
-                            <TableRow key={row.name}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
+                            <TableRow key={row.previewName}>
+                                <TableCell component="td" scope="row">
+                                    {row.previewName}
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="right">
-                                    {row.status}
+                                    <Tooltip title={handleTranslateStatus(row.status)}>
+                                        {row.status === 'completed' ? <DoneIcon/> : <PendingIcon/>}
+                                    </Tooltip>
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="right">
-                                    <CommentIcon/>
+                                    <CommentIcon style={{cursor: 'pointer'}} onClick={() => {openTaskDetail(row.id)}}/>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -167,7 +176,7 @@ const TasksPage:FC = () => {
                             <TablePagination
                                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                                 colSpan={3}
-                                count={rows.length}
+                                count={tasks ? tasks.length : 0}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
                                 SelectProps={{
@@ -184,6 +193,9 @@ const TasksPage:FC = () => {
                     </TableFooter>
                 </Table>
             </TableContainer>
+            <Button variant="contained" disabled={role !== 'admin'} className="tasks__add_button" onClick={() => {setAddTask(true)}}>Добавить задачу</Button>
+            <TaskAddForm open={addTaskForm} setIsOpen={setAddTask} />
+            <TaskDetailsInfo open={taskDetails} setIsOpen={setTaskDetails}/>
         </Container>
     );
 };
