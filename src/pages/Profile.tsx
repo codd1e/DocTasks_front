@@ -16,6 +16,7 @@ const Profile:FC = () => {
         <Container maxWidth="lg" className="profile">
             <div className="profile__title">
                 <img src={profile.avatar!} alt="Avatar" className="profile__avatar"/>
+                <Typography variant="h3">{profile.name}</Typography>
             </div>
             {/*<div className="profile__info">*/}
             {/*    <div className="profile__info__point">*/}

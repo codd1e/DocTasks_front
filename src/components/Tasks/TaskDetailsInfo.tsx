@@ -38,7 +38,10 @@ const TaskDetailsInfo: FC<TypeProps> = ({open, setIsOpen}) => {
                     Задача #{details.id}
                 </DialogTitle>
                 <DialogContent>
-                    <TextField fullWidth id="standard-basic" label={details.previewName} disabled={true} variant="standard" style={{marginBottom: '36px', border:'none'}}/>
+                    <div style={{marginBottom: '36px', border:'none'}} className="taskConstantInfo">
+                        <TextField fullWidth id="standard-basic" label={details.previewName} disabled={true} variant="standard"/>
+                        <TextField fullWidth id="standard-basic" label={details.responsible} disabled={true} variant="standard"/>
+                    </div>
                     <TextField
                         style={{marginBottom: '28px'}}
                         fullWidth

@@ -142,6 +142,7 @@ const TasksPage:FC = () => {
                     <TableHead>
                         <TableRow style={{backgroundColor: "#1976D2"}}>
                             <TableCell style={{color: 'white'}}>Задача</TableCell>
+                            <TableCell style={{color: 'white'}}>Ответственный</TableCell>
                             <TableCell align="right" style={{color: 'white'}}>Статус</TableCell>
                             <TableCell align="right" style={{color: 'white'}}>Описание</TableCell>
                         </TableRow>
@@ -155,12 +156,15 @@ const TasksPage:FC = () => {
                                 <TableCell component="td" scope="row">
                                     {row.previewName}
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="right">
+                                <TableCell component="td" scope="row" style={{ width: 80 }}>
+                                    {row.responsible}
+                                </TableCell>
+                                <TableCell style={{ width: 40 }} align="right">
                                     <Tooltip title={handleTranslateStatus(row.status)}>
                                         {row.status === 'completed' ? <DoneIcon/> : <PendingIcon/>}
                                     </Tooltip>
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="right">
+                                <TableCell style={{ width: 40 }} align="right">
                                     <CommentIcon style={{cursor: 'pointer'}} onClick={() => {openTaskDetail(row.id)}}/>
                                 </TableCell>
                             </TableRow>

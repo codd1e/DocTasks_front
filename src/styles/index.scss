@@ -184,6 +184,10 @@ body {
   .newTaskInput:not(:last-child) {
     margin-bottom: 24px;
   }
+  .taskConstantInfo {
+    display: grid;
+    grid-template-columns: 0.7fr 0.3fr;
+  }
   .loader {
     transform: rotateZ(45deg);
     perspective: 1000px;

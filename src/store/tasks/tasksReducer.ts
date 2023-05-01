@@ -3,6 +3,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export interface ITasksListItem {
     id: string,
     previewName: string,
+    responsible: string,
     status: 'completed' | 'inProgress'
 }
 
@@ -12,24 +13,18 @@ export interface ITaskDetailsItem {
     description: string | null;
     timeSpent: string | null;
     jobDescription: string | null;
+    responsible: string | null;
     status: 'completed' | 'inProgress';
 }
 
 export interface TasksState {
     tasksListData: {
-        tasksList: {id: string, previewName: string, status: 'completed' | 'inProgress'}[] | null;
+        tasksList: {id: string, previewName: string, responsible: string, status: 'completed' | 'inProgress'}[] | null;
         loading: boolean;
         error: string | null;
     },
     taskDetailsData: {
-        taskDetails: {
-            id: string | null;
-            previewName: string | null;
-            description: string | null;
-            timeSpent: string | null;
-            jobDescription: string | null;
-            status: 'completed' | 'inProgress';
-        }
+        taskDetails: ITaskDetailsItem;
         loading: boolean;
         error: string | null;
     }
@@ -48,6 +43,7 @@ const initialState: TasksState = {
             description: null,
             timeSpent: null,
             jobDescription: null,
+            responsible: null,
             status: 'inProgress',
         },
         loading: false,

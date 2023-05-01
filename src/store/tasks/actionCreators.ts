@@ -45,3 +45,8 @@ export const getTaskDetails = (id: string) => {
         }
     }
 }
+
+export const getResponsible = async () => {
+    const response = await axiosInstance.get('/getResponsible')
+    return response.data;
+}

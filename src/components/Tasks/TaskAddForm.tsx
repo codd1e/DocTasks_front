@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
     Button,
     Dialog,
@@ -6,14 +6,13 @@ import {
     DialogContent,
     DialogTitle,
     FormControl,
-    FormControlLabel, FormLabel, Radio,
-    RadioGroup
+    FormControlLabel, FormLabel, InputLabel, MenuItem, Radio,
+    RadioGroup, Select
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import {useAppDispatch, useAppSelector} from "../../store";
-import {useSelector} from "react-redux";
 import {INewTask} from "../../types/TASKS";
-import {addTaskToList} from "../../store/tasks/actionCreators";
+import {addTaskToList, getResponsible} from "../../store/tasks/actionCreators";
 
 interface TypeProps {
     open: boolean;
@@ -21,11 +20,17 @@ interface TypeProps {
     addTask?: () => {};
 }
 
+interface IResponsible {
+    name: string
+}
+
 const TaskAddForm:FC<TypeProps> = ({open, setIsOpen, addTask}) => {
     const tasksList = useAppSelector((state) => state.tasks.tasksListData.tasksList);
     const currentId = tasksList ? tasksList.length + 1 + '' : '1';
     const [previewName, setPreviewName] = useState<string | null>(null);
     const [description, setDescription] = useState<string | null>(null);
+    const [responsibleList, setResponsibleList] = useState<IResponsible[]>();
+    const [currentResponsible, setCurrentResponsible] = useState<string | null>(null);
     const [status, setStatus] = useState<string>('inProgress');
 
     const dispatch = useAppDispatch();
@@ -35,11 +40,18 @@ const TaskAddForm:FC<TypeProps> = ({open, setIsOpen, addTask}) => {
             id: currentId,
             previewName: previewName,
             description: description,
-            status: status
+            responsible: currentResponsible,
+            status: status,
         }
         dispatch(addTaskToList(newTask))
         setIsOpen(false);
     }
+
+    useEffect(() => {
+        getResponsible().then((response) => {
+            setResponsibleList(response);
+        })
+    }, [])
 
     return (
         <Dialog open={open} maxWidth='md' fullWidth={true}>
@@ -66,9 +78,17 @@ const TaskAddForm:FC<TypeProps> = ({open, setIsOpen, addTask}) => {
                     variant="standard"
                     onChange={(e) => {setDescription(e.target.value)}}
                 />
-                <FormControl>
+                <FormControl fullWidth className="newTaskInput" variant="standard">
+                    <InputLabel id="select-label" variant="standard">Ответственный</InputLabel>
+                    <Select labelId="select-label" fullWidth value={currentResponsible} onChange={(e) => {setCurrentResponsible(e.target.value)}}>
+                        {responsibleList ? responsibleList.map((responsible) => (
+                            <MenuItem key={responsible.name} value={responsible.name}>{responsible.name}</MenuItem>
+                        )) : <MenuItem key='clear' value={''}>Ничего не найдено</MenuItem>}
+                    </Select>
+                </FormControl>
+                <FormControl className="newTaskInput">
                     <FormLabel id="controlled-radio-buttons-group">Статус</FormLabel>
-                    <RadioGroup row value={status} onChange={(e) => {setStatus(e.target.value)}} className="newTaskInput">
+                    <RadioGroup row value={status} onChange={(e) => {setStatus(e.target.value)}}>
                         <FormControlLabel value="inProgress" control={<Radio />} label="В процессе" />
                         <FormControlLabel value="completed" control={<Radio />} label="Выполнено" />
                     </RadioGroup>
