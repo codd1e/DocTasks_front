@@ -1,11 +1,12 @@
 import {Dispatch} from "react";
 import {
+    ITaskDetailsItem,
     loadTaskDetailsRejected,
     loadTaskDetailsStart,
     loadTaskDetailsSuccess,
     loadTasksListRejected,
     loadTasksListStart,
-    loadTasksListSuccess
+    loadTasksListSuccess, updateTaskAction, updateTaskReject, updateTaskSuccess
 } from "./tasksReducer";
 import {axiosInstance} from "../../api/instance";
 import {INewTask} from "../../types/TASKS";
@@ -34,7 +35,7 @@ export const addTaskToList = (data: INewTask) => {
     }
 }
 
-export const getTaskDetails = (id: string) => {
+export const getTaskDetails = (id: string | null) => {
     return async (dispatch: Dispatch<any>) => {
         try {
             dispatch(loadTaskDetailsStart())
@@ -49,4 +50,17 @@ export const getTaskDetails = (id: string) => {
 export const getResponsible = async () => {
     const response = await axiosInstance.get('/getResponsible')
     return response.data;
+}
+
+export const updateTask = (body: ITaskDetailsItem) => {
+    return async (dispatch: Dispatch<any>)=> {
+        try {
+            dispatch(updateTaskAction())
+            const response = await axiosInstance.post('/taskDetailsUpdate', body)
+            console.log(response)
+            dispatch(updateTaskSuccess(response.data))
+        } catch (err: any) {
+            dispatch(updateTaskReject(err))
+        }
+    }
 }

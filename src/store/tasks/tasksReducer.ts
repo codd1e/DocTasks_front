@@ -24,7 +24,7 @@ export interface TasksState {
         error: string | null;
     },
     taskDetailsData: {
-        taskDetails: ITaskDetailsItem;
+            taskDetails: ITaskDetailsItem;
         loading: boolean;
         error: string | null;
     }
@@ -113,6 +113,35 @@ const tasksReducer = createSlice({
                 }
             }
         },
+        updateTaskAction: (state): TasksState => {
+            return {
+                ...state,
+                taskDetailsData: {
+                    ...state.taskDetailsData,
+                    loading: true,
+                }
+            }
+        },
+        updateTaskSuccess: (state, action: PayloadAction<any>): TasksState => {
+            return {
+                ...state,
+                taskDetailsData: {
+                    taskDetails: action.payload,
+                    loading: false,
+                    error: null,
+                }
+            }
+        },
+        updateTaskReject: (state, action:PayloadAction<string>): TasksState => {
+            return {
+                ...state,
+                taskDetailsData: {
+                    ...state.taskDetailsData,
+                    loading: false,
+                    error: action.payload,
+                }
+            }
+        }
     }
 })
 
@@ -122,7 +151,10 @@ export const {
     loadTasksListRejected,
     loadTaskDetailsStart,
     loadTaskDetailsSuccess,
-    loadTaskDetailsRejected
+    loadTaskDetailsRejected,
+    updateTaskAction,
+    updateTaskSuccess,
+    updateTaskReject
 } = tasksReducer.actions;
 
 export default tasksReducer.reducer;

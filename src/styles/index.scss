@@ -188,6 +188,11 @@ body {
     display: grid;
     grid-template-columns: 0.7fr 0.3fr;
   }
+  .taskSuccessButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .loader {
     transform: rotateZ(45deg);
     perspective: 1000px;
