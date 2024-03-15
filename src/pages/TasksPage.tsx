@@ -151,8 +151,8 @@ const TasksPage:FC = () => {
                         {(rowsPerPage > 0
                                 ? tasks ? tasks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : []
                                 : tasks ? tasks : []
-                        ).map((row) => (
-                            <TableRow key={row.previewName}>
+                        ).map((row, index) => (
+                            <TableRow key={index}>
                                 <TableCell component="td" scope="row">
                                     {row.previewName}
                                 </TableCell>
